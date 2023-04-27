@@ -25,10 +25,11 @@ export default function DeleteHistory() {
       {
         label: "",
         input: (
-          <button class="nextBtn">
-            <span class="btnText">Delete</span>
-            <i class="uil uil navigator"></i>
-          </button>
+          <div className="btn">
+            <button className="deleteBtn">
+              <span>Delete</span>
+            </button>
+          </div>
         ),
       },
     ],

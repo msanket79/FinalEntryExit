@@ -1,35 +1,15 @@
-import Form from "../components/Form";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { useContext } from "react";
 import SharingContext from "../context/SharingContext";
-import { Link, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
+import { IoMailOutline, IoKeyOutline } from "react-icons/io5";
 
 export default function LoginForm() {
   const { setAuth, setRole, APIaddr, setID } = useContext(SharingContext);
 
-  const navigate = useNavigate();
-
-  const data = {
-    Header: "Login",
-    fields: [
-      {
-        label: "Email",
-        input: <input type="email" name="email" required />,
-      },
-      {
-        label: "Password",
-        input: <input type="password" name="password" required />,
-      },
-      {
-        label: "",
-        input: <button>SUBMIT</button>,
-      },
-    ],
-  };
-
-  const handleSubmit = async (params) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
     const response = await axios.post(`${APIaddr}`, params);
     if (response.data.success) {
       console.log(response.data);
@@ -63,7 +43,31 @@ export default function LoginForm() {
 
   return (
     <>
-      <Form data={data} onSubmit={handleSubmit} />
+      <div className="container3">
+        <div className="form-box">
+          <h1 id="title">Login</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <div className="input-field">
+                <IoMailOutline className="login-icon" />
+                <input type="email" placeholder="E-Mail" name="email" />
+              </div>
+              <div className="input-field">
+                <IoKeyOutline className="login-icon" />
+                <input type="password" placeholder="Password" name="password" />
+              </div>
+              {/* <p>
+                Forgotten Password ? <a href="#"> Click Here!</a>
+              </p> */}
+            </div>
+            <div className="btn-field">
+              <button type="submit" className="disable" id="signinBtn">
+                Sign In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

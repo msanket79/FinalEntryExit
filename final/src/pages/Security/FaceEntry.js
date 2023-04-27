@@ -8,7 +8,7 @@ export default function MakeEntry() {
   const vid = useRef(null);
   const canvasRef = useRef(null);
   const [studentData, setData] = useState({});
-  const [take, setTake] = useState(true)
+  const [take, setTake] = useState(true);
   let temp = null;
 
   useEffect(() => {
@@ -48,13 +48,16 @@ export default function MakeEntry() {
     formData.append("entry_type", "face");
     const response = await axios.post(`${APIaddr}direct_entry/`, formData);
     if (
-      (response.data.error && take &&
-      window.location.pathname === "/security/faceEntry") || response.status === 500
+      (response.data.error &&
+        take &&
+        window.location.pathname === "/security/faceEntry") ||
+      response.status === 500
     )
       makePackage();
     else {
+      vid.current.srcObject.getTracks().forEach((track) => track.stop());
       setData(response.data);
-      setTake(false)
+      setTake(false);
     }
   };
 

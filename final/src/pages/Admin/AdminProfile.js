@@ -1,13 +1,7 @@
-import {
-  IoMailOutline,
-  IoCallOutline,
-  IoMaleFemaleOutline,
-  IoWaterOutline,
-} from "react-icons/io5";
+import { IoMailOutline, IoCallOutline } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import SharingContext from "../../context/SharingContext";
-import "../Admin/ProfileStyle.css";
 
 export default function StudentProfile() {
   const { APIaddr } = useContext(SharingContext);

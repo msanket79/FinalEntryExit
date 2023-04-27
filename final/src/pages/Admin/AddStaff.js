@@ -1,11 +1,6 @@
-import axios from "axios";
 import Form from "../../components/Form";
-import { useContext } from "react";
-import SharingContext from "../../context/SharingContext";
 
 export default function AddStaff({ handleStaffSubmit }) {
-  const { APIaddr } = useContext(SharingContext);
-
   const data = {
     Header: "Add Staff",
     fields: [
@@ -31,7 +26,8 @@ export default function AddStaff({ handleStaffSubmit }) {
             required
           />
         ),
-      },{
+      },
+      {
         label: "Password",
         input: (
           <input
@@ -50,7 +46,7 @@ export default function AddStaff({ handleStaffSubmit }) {
       },
       {
         label: "Is the staff a Warden?",
-        input: <input type="checkbox" />,
+        input: <input type="checkbox" value="warden" />,
       },
       {
         label: "Is the staff a Student Welfare Coordinator?",
@@ -83,9 +79,7 @@ export default function AddStaff({ handleStaffSubmit }) {
         label: "",
         input: (
           <button className="nextBtn">
-            <span className="btnText">
-              Create
-            </span>
+            <span className="btnText">Create</span>
             <i className="uil uil navigator"></i>
           </button>
         ),
@@ -93,10 +87,5 @@ export default function AddStaff({ handleStaffSubmit }) {
     ],
   };
 
-  const handleSubmit = async (formData) => {
-    const response = await axios.post(`${APIaddr}create_staff/`,formData);
-    if(response.data.error) window.alert(response.data.error)
-  };
-
-  return <Form data={data} onSubmit={handleSubmit} />;
+  return <Form data={data} onSubmit={handleStaffSubmit} />;
 }

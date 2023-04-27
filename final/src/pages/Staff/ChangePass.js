@@ -35,7 +35,6 @@ export default function ChangePassword() {
         input: (
           <button class="nextBtn">
             <span class="btnText">Submit</span>
-            <i class="uil uil navigator"></i>
           </button>
         ),
       },
@@ -45,18 +44,7 @@ export default function ChangePassword() {
   const handleSubmit = (params) => {
     if (params.get("new_password") === params.get("rePass")) {
       const postData = async () => {
-        const response = await axios.post(
-          `${APIaddr}change_password/`,
-          params,
-          {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "X-CSRFToken": Cookies.get("csrftoken"),
-            },
-          }
-        );
-        console.log(response.data);
+        const response = await axios.post(`${APIaddr}change_password/`, params);
       };
       postData();
     } else {

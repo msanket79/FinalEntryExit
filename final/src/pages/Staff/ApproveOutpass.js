@@ -19,35 +19,42 @@ export default function ApproveOutpass() {
     return [
       record.name,
       record.roll_no,
+      record.phone_no,
       record.From,
       record.To,
       record.Reason,
-      <button
-        onClick={async () => {
-          const response = await axios.post(`${APIaddr}outpass_requests/`, {
-            id: record.id,
-            status: "Approve",
-          });
-          if (response.data.success) window.alert(response.data.success);
-          else window.alert(response.data.error);
-          setDummy(Math.random());
-        }}
-      >
-        APPROVE
-      </button>,
-      <button
-        onClick={async () => {
-          const response = await axios.post(`${APIaddr}outpass_requests/`, {
-            id: record.id,
-            status: "Reject",
-          });
-          if (response.data.success) window.alert(response.data.success);
-          else window.alert(response.data.error);
-          setDummy(Math.random());
-        }}
-      >
-        REJECT
-      </button>,
+      <div className="btn">
+        <button
+          onClick={async () => {
+            const response = await axios.post(`${APIaddr}outpass_requests/`, {
+              id: record.id,
+              status: "Approve",
+            });
+            if (response.data.success) window.alert(response.data.success);
+            else window.alert(response.data.error);
+            setDummy(Math.random());
+          }}
+          className="approveBtn"
+        >
+          APPROVE
+        </button>
+      </div>,
+      <div className="btn">
+        <button
+          onClick={async () => {
+            const response = await axios.post(`${APIaddr}outpass_requests/`, {
+              id: record.id,
+              status: "Reject",
+            });
+            if (response.data.success) window.alert(response.data.success);
+            else window.alert(response.data.error);
+            setDummy(Math.random());
+          }}
+          className="deleteBtn"
+        >
+          REJECT
+        </button>
+      </div>,
     ];
   });
 
@@ -56,6 +63,7 @@ export default function ApproveOutpass() {
     headers: [
       "Name",
       "Registration Number",
+      "Phone Number",
       "From Date",
       "To Date",
       "Reason",

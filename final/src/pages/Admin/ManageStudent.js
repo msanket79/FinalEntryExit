@@ -22,44 +22,53 @@ export default function ManageStudent() {
       rowData.phone_no,
       rowData.emergency_phone_no,
       rowData.ban ? (
-        <button
-          onClick={async () => {
-            const formData = new FormData();
-            formData.append("id", rowData.id);
-            const response = await axios.post(
-              `${APIaddr}unban_student/`,
-              formData
-            );
-            setDummy(Math.random);
-          }}
-        >
-          UNBAN
-        </button>
+        <div className="btn">
+          <button
+            onClick={async () => {
+              const formData = new FormData();
+              formData.append("id", rowData.id);
+              const response = await axios.post(
+                `${APIaddr}unban_student/`,
+                formData
+              );
+              setDummy(Math.random);
+            }}
+            className="approveBtn"
+          >
+            UNBAN
+          </button>
+        </div>
       ) : (
+        <div className="btn">
+          <button
+            onClick={async () => {
+              const formData = new FormData();
+              formData.append("id", rowData.id);
+              const response = await axios.post(
+                `${APIaddr}ban_student/`,
+                formData
+              );
+              setDummy(Math.random);
+            }}
+            className="deleteBtn"
+          >
+            BAN
+          </button>
+        </div>
+      ),
+      <div className="btn">
         <button
           onClick={async () => {
             const formData = new FormData();
             formData.append("id", rowData.id);
-            const response = await axios.post(
-              `${APIaddr}ban_student/`,
-              formData
-            );
-            setDummy(Math.random);
+            await axios.post(`${APIaddr}delete_student/`, formData);
+            setDummy(Math.random());
           }}
+          className="deleteBtn"
         >
-          BAN
+          Delete
         </button>
-      ),
-      <button
-        onClick={async () => {
-          const formData = new FormData();
-          formData.append("id", rowData.id);
-          await axios.post(`${APIaddr}delete_student/`, formData);
-          setDummy(Math.random());
-        }}
-      >
-        Delete
-      </button>,
+      </div>,
     ];
   });
 

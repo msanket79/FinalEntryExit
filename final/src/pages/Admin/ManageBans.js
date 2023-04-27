@@ -22,17 +22,20 @@ export default function BansTable() {
       rowData.name,
       rowData.roll_no,
       rowData.reason,
-      <button
-        onClick={async () => {
-          const response = await axios.post(`${APIaddr}unban_requests/`, {
-            roll_no: rowData.roll_no,
-          });
-          if (response.data.success) setDummy(Math.random);
-          else window.alert(response.data.error);
-        }}
-      >
-        UNBAN
-      </button>,
+      <div className="btn">
+        <button
+          onClick={async () => {
+            const response = await axios.post(`${APIaddr}unban_requests/`, {
+              roll_no: rowData.roll_no,
+            });
+            if (response.data.success) setDummy(Math.random);
+            else window.alert(response.data.error);
+          }}
+          className="approveBtn"
+        >
+          UNBAN
+        </button>
+      </div>,
     ];
   });
 

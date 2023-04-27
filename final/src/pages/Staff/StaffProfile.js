@@ -1,13 +1,7 @@
-import {
-  IoMailOutline,
-  IoCallOutline,
-  IoTimerOutline,
-  IoWaterOutline,
-} from "react-icons/io5";
+import { IoMailOutline, IoTimerOutline } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import SharingContext from "../../context/SharingContext";
-import "../Admin/ProfileStyle.css";
 
 export default function StaffProfile() {
   const { APIaddr } = useContext(SharingContext);

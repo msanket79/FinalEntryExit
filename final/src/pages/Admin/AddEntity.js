@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import DropdownStylized from "../../components/DropdownStylized";
 import AddStaff from "./AddStaff";
 import AddStudent from "./AddStudent";
 import AddSecurity from "./AddSecurity";
 import ContinueStaff from "./ContinueStaff";
+import BulkAddStudents from "./BulkAddStudents";
+import axios from "axios";
+import SharingContext from "../../context/SharingContext";
 
 export default function AddEntity() {
   const [Entity, SetEntity] = useState("Select Entity");
+  const [staffLevel, setStaffLevel] = useState(null);
+  const { APIaddr } = useContext(SharingContext);
+
   const options = [
     { key: 1, label: "Add Staff" },
     { key: 2, label: "Add Student" },
     { key: 3, label: "Add Security" },
+    { key: 4, label: "Bulk Add Students" },
   ];
 
-  const handleStaffSubmit = (event) => {
-    event.preventDefault();
+  const handleStaffSubmit = async (formData) => {
+    const response = await axios.post(`${APIaddr}create_staff/`, formData);
+    if (response.data.error) window.alert(response.data.error);
+    setStaffLevel([
+      formData.get("warden"),
+      formData.get("fa"),
+      response.data.id,
+    ]);
     SetEntity("staffpg2");
   };
 
@@ -32,7 +45,11 @@ export default function AddEntity() {
       )}
       {Entity === "Add Student" && <AddStudent />}
       {Entity === "Add Security" && <AddSecurity />}
-      {Entity === "staffpg2" && <ContinueStaff />}
+      {Entity === "staffpg2" && staffLevel && (
+        <ContinueStaff staffLevel={staffLevel} setEntity={SetEntity} />
+      )}
+
+      {Entity === "Bulk Add Students" && <BulkAddStudents />}
     </div>
   );
 }

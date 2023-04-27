@@ -14,6 +14,10 @@ import {
   IoCheckmarkCircleOutline,
   IoLockClosedOutline,
   IoLogOutOutline,
+  IoCheckmarkDoneOutline,
+  IoPaperPlaneOutline,
+  IoEyeOutline,
+  IoPersonAddOutline,
 } from "react-icons/io5";
 
 export default function StaffTemplate() {
@@ -42,6 +46,26 @@ export default function StaffTemplate() {
       title: "Approve Outpass",
       to: "approve",
       icon: <IoCheckmarkCircleOutline />,
+    },
+    {
+      title: "View Approved Outpasses",
+      to: "viewApprovedOutpasses",
+      icon: <IoCheckmarkDoneOutline />,
+    },
+    {
+      title: "Students Out on Outpass",
+      to: "viewStudentsOut",
+      icon: <IoPaperPlaneOutline />,
+    },
+    {
+      title: "View Students",
+      to: "viewStudents",
+      icon: <IoEyeOutline />,
+    },
+    {
+      title: "Add Students",
+      to: "addStudents",
+      icon: <IoPersonAddOutline />,
     },
     {
       title: "Change Password",

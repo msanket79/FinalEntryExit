@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddStudent() {
   const { APIaddr } = useContext(SharingContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const formData = {
     Header: "Add Student",
     fields: [
@@ -77,10 +77,9 @@ export default function AddStudent() {
   const handleSubmit = async (formData) => {
     const postData = async () => {
       const response = await axios.post(`${APIaddr}create_student/`, formData);
-      console.log(response);
       if (response.data.success) {
         window.alert("Student Created");
-        navigate("../home")
+        navigate("../home");
       } else {
         window.alert(response.data.error);
       }
