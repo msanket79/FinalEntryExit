@@ -20,7 +20,7 @@ export default function Form({ data, onSubmit }) {
     // for (let [key, value] of formData.entries()) {
     //   formValues[key] = value;
     // }
-    // event.target.reset();
+    event.target.reset();
     onSubmit(formData);
   }
 

@@ -27,6 +27,7 @@
   display: inline;
   width: fit-content;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .options {
@@ -39,7 +40,7 @@
   text-align: center;
   justify-content: center;
 }
-.options:hover {
-  background: var(--heading);
-  color: var(--main);
+.options-box div:hover {
+  background: var(--main);
+  color: var(--heading);
 }

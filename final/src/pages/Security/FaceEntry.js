@@ -8,6 +8,7 @@ export default function MakeEntry() {
   const vid = useRef(null);
   const canvasRef = useRef(null);
   const [studentData, setData] = useState({});
+  const [take, setTake] = useState(true)
   let temp = null;
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function MakeEntry() {
       capture();
       formData.append("img", temp);
       count++;
-      if (count === 10) {
+      if (count === 5) {
         console.log(formData.getAll("img"));
         shipPackage(formData);
         clearInterval(iid);
@@ -47,12 +48,13 @@ export default function MakeEntry() {
     formData.append("entry_type", "face");
     const response = await axios.post(`${APIaddr}direct_entry/`, formData);
     if (
-      response.data.error &&
-      window.location.pathname === "/security/faceEntry"
+      (response.data.error && take &&
+      window.location.pathname === "/security/faceEntry") || response.status === 500
     )
       makePackage();
     else {
       setData(response.data);
+      setTake(false)
     }
   };
 

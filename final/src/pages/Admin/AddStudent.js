@@ -2,10 +2,11 @@ import { useContext } from "react";
 import Form from "../../components/Form";
 import SharingContext from "../../context/SharingContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddStudent() {
   const { APIaddr } = useContext(SharingContext);
-
+  const navigate=useNavigate()
   const formData = {
     Header: "Add Student",
     fields: [
@@ -79,6 +80,7 @@ export default function AddStudent() {
       console.log(response);
       if (response.data.success) {
         window.alert("Student Created");
+        navigate("../home")
       } else {
         window.alert(response.data.error);
       }

@@ -22,7 +22,7 @@ export default function FaceEntryNext({ record, setData }) {
       },
       {
         label: "Image",
-        input: <img src={`${APIaddr}` + record.profile_pic} />,
+        input: <img src={`${APIaddr}` + record.profile_pic} style={{height:"480px", width:"640px"}}/>,
       },
       {
         label: "",
