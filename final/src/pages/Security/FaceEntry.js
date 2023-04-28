@@ -10,11 +10,11 @@ export default function MakeEntry() {
   const [studentData, setData] = useState({});
   const [take, setTake] = useState(true);
   let temp = null;
-
+  let stream;
   useEffect(() => {
     const getMedia = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
+        stream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: "environment" },
         });
         if (vid.current) {
@@ -27,6 +27,13 @@ export default function MakeEntry() {
 
     getMedia();
     makePackage();
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => {
+          track.stop();
+        });
+      }
+    };
   }, [studentData]);
 
   const makePackage = () => {
@@ -37,7 +44,6 @@ export default function MakeEntry() {
       formData.append("img", temp);
       count++;
       if (count === 5) {
-        console.log(formData.getAll("img"));
         shipPackage(formData);
         clearInterval(iid);
       }
@@ -55,7 +61,6 @@ export default function MakeEntry() {
     )
       makePackage();
     else {
-      vid.current.srcObject.getTracks().forEach((track) => track.stop());
       setData(response.data);
       setTake(false);
     }
