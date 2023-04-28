@@ -40,38 +40,28 @@ export default function AddStaff({ handleStaffSubmit }) {
       },
       {
         label: "Profile Picture",
-        input: (
-          <input type="file" accept=".jpg, .jpeg" name="profile_pic" required />
-        ),
+        input: <input type="file" accept=".jpg, .jpeg" name="profile_pic" />,
       },
       {
         label: "Is the staff a Warden?",
-        input: <input type="checkbox" value="warden" />,
+        input: <input type="radio" value="warden" name="Permission_level" />,
       },
       {
         label: "Is the staff a Student Welfare Coordinator?",
-        input: <input type="checkbox" value="swc" />,
+        input: <input type="radio" value="swc" name="Permission_level" />,
       },
       {
         label: "Is the staff a Faculty Advisor?",
-        input: <input type="checkbox" value="fa" />,
+        input: <input type="radio" value="fa" name="Permission_level" />,
       },
       {
         label: "Gender",
         input: (
-          <div className="gender-details">
-            <input type="radio" name="gender" id="dot-1" />
-            <input type="radio" name="gender" id="dot-2" />
-            <div className="category">
-              <label htmlFor="dot-1">
-                <span className="dot one"></span>
-                <span className="gender">Male</span>
-              </label>
-              <label htmlFor="dot-2">
-                <span className="dot two"></span>
-                <span className="gender">Female</span>
-              </label>
-            </div>
+          <div className="input-field76t33">
+            <label>Male</label>
+            <input type="radio" name="gender" value="male" id="dot-1" />
+            <label>Female</label>
+            <input type="radio" name="gender" value="female" id="dot-2" />
           </div>
         ),
       },

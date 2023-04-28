@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Form from "../../components/Form";
-import SearchableTable from "../../components/SearchableTable";
+import Table from "../../components/Table";
 import SharingContext from "../../context/SharingContext";
 import axios from "axios";
 
@@ -10,23 +10,23 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const response = await axios.get(`${APIaddr}`);
+      const response = await axios.get(`${APIaddr}add_students_for_outpass/`);
       if (response.data.error) fetchStudents();
       else setStudentList(response.data);
     };
-    if (staffLevel[1]) fetchStudents();
+    if (staffLevel[0] === "fa") fetchStudents();
   }, []);
 
-  const wardenField = staffLevel[0] && {
+  const wardenField = staffLevel[0] === "warden" && {
     label: "Add students under warden",
     input: (
       <div>
         <span>Boys</span>
-        <input type="radio" name="students" value="boys" />
-
+        <input type="radio" name="students" value="male" />
+        <br />
         <span>Girls</span>
-        <input type="radio" name="students" value="girls" />
-
+        <input type="radio" name="students" value="female" />
+        <br />
         <span>Add All Students</span>
         <input type="radio" name="students" value="all" />
       </div>
@@ -48,11 +48,11 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
     entries: entries,
   };
 
-  const faField = staffLevel[1] && {
+  const faField = staffLevel[0] === "fa" && {
     label: "",
     input: (
       <div>
-        <SearchableTable searchFor="Registration Number" data={faData} />
+        <Table searchFor="Registration Number" data={faData} />
       </div>
     ),
   };
@@ -74,8 +74,11 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
   };
 
   const handleSubmit = async (formData) => {
-    formData.append("id", staffLevel[2]);
-    const response = await axios.post(`${APIaddr}`, formData);
+    formData.append("id", staffLevel[1]);
+    const response = await axios.post(
+      `${APIaddr}add_students_for_outpass/`,
+      formData
+    );
     if (response.data.success) setEntity("Select Entity");
   };
 

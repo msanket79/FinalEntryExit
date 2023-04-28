@@ -23,11 +23,7 @@ export default function AddEntity() {
   const handleStaffSubmit = async (formData) => {
     const response = await axios.post(`${APIaddr}create_staff/`, formData);
     if (response.data.error) window.alert(response.data.error);
-    setStaffLevel([
-      formData.get("warden"),
-      formData.get("fa"),
-      response.data.id,
-    ]);
+    setStaffLevel([formData.get("Permission_level"), response.data.id]);
     SetEntity("staffpg2");
   };
 
