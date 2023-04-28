@@ -6,7 +6,8 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import className from "classnames";
 import SharingContext from "../context/SharingContext";
-import logo from "../images/collegeLogo.png";
+// import logo from "../images/collegeLogo.png";
+import logo1 from "../images/logon.png";
 
 // Need to add active and pending class colours in css
 
@@ -48,7 +49,12 @@ export default function NavBar({ links }) {
               {/* <span>S</span> */}
               {/* {show && "ilhouette"}{" "} */}
               {/* Display the stylised S when collapsed */}
-              <img src={logo} className="nav-logo" alt="IIIT DWD Logo" />
+              <img
+                src={logo1}
+                className="nav-logo"
+                alt="IIIT DWD Logo"
+                // style="marginRight:'100em';"
+              />
             </div>
           </NavLink>
           <div className="nav-toggler">
