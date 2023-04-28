@@ -1,4 +1,4 @@
-import { IoMailOutline, IoTimerOutline } from "react-icons/io5";
+import { IoMailOutline, IoCallOutline } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import SharingContext from "../../context/SharingContext";
@@ -54,7 +54,7 @@ export default function StaffProfile() {
           <div className="projects_data7684">
             <div className="data12534">
               <h4>
-                <IoTimerOutline />
+                <IoCallOutline />
                 Contact Number
               </h4>
               <p>{data.phone_no}</p>

@@ -23,8 +23,19 @@ export default function AddEntity() {
   const handleStaffSubmit = async (formData) => {
     const response = await axios.post(`${APIaddr}create_staff/`, formData);
     if (response.data.error) window.alert(response.data.error);
-    setStaffLevel([formData.get("Permission_level"), response.data.id]);
-    SetEntity("staffpg2");
+    if(formData.get("Permission_level" !== "swc"))
+    {setStaffLevel([formData.get("Permission_level"), response.data.id]);
+    SetEntity("staffpg2");}
+    else {
+      const swcCreate = new FormData()
+      swcCreate.append("id", response.data.id);
+      swcCreate.append("students", "all");
+    const resp = await axios.post(
+      `${APIaddr}add_students_for_outpass/`,
+      swcCreate
+    );
+    if (resp.data.success) SetEntity("Select Entity");
+    }
   };
 
   return (

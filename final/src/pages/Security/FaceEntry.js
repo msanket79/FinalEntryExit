@@ -61,6 +61,11 @@ export default function MakeEntry() {
     )
       makePackage();
     else {
+      if (stream) {
+        stream.getTracks().forEach((track) => {
+          track.stop();
+        });
+      }
       setData(response.data);
       setTake(false);
     }

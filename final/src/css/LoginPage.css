@@ -1,16 +1,16 @@
 .container3 {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-      rgba(215, 138, 223, 0.301),
-      rgba(134, 43, 108, 0.3)
-    ),
-    url(../images/bg.jpg);
+  background-image: 
+    url(../images/bg1.jpg);
   background-position: center;
   background-size: cover;
   position: relative;
 }
-
+/* linear-gradient(
+      rgba(215, 138, 223, 0.301),
+      rgba(134, 43, 108, 0.3)
+    ), */
 .form-box {
   width: 90%;
   max-width: 450px;

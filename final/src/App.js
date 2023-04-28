@@ -31,14 +31,14 @@ export default function App() {
   return (
     <>
       {true && <LoginRoutes />}
-      {/* {isAuth && role === "student" && <StudentRoutes />}
+      {isAuth && role === "student" && <StudentRoutes />}
       {isAuth && role === "admin" && <AdminRoutes />}
       {isAuth && role === "staff" && <StaffRoutes />}
-      {isAuth && role === "security" && <SecurityRoutes />} */}
-      <StudentRoutes />
+      {isAuth && role === "security" && <SecurityRoutes />}
+      {/* <StudentRoutes />
       <AdminRoutes />
       <StaffRoutes />
-      <SecurityRoutes />
+      <SecurityRoutes /> */}
     </>
   );
 }
