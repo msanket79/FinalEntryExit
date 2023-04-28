@@ -15,8 +15,10 @@
   --bg-black-50: #e8dfec;
   --text-black-900: #302e4d;
   --text-black-700: #504e70;
-  --main: rgba(0, 0, 0);
-  --heading: #fff;
+  /* --main: rgba(0, 0, 0); */
+  --main: rgb(238, 239, 239);
+  /* --heading: #fff; */
+  --heading: rgb(5, 31, 65);
   --main-text: #dfdfe290;
   --wrapper: #000;
 }
@@ -24,6 +26,17 @@
 .divbody {
   min-height: 100vh;
   overflow-x: hidden;
+  --bg--black-900: #151515;
+  --bg-black-100: #222222;
+  --bg-black-50: #393939;
+  --text-black-900: #ffffff;
+  --text-black-700: #e9e9e9;
+  /* --main: #fff; */
+  /* --heading: #000; */
+  --main-text: rgba(24, 24, 27);
+  --wrapper: #fff;
+  --main: rgb(5, 31, 65);
+  --heading: rgb(238, 239, 239);
 }
 .divbody::-webkit-scrollbar {
   display: none;
@@ -34,10 +47,12 @@
   --bg-black-50: #393939;
   --text-black-900: #ffffff;
   --text-black-700: #e9e9e9;
-  --main: #fff;
-  --heading: #000;
+  /* --main: #fff; */
+  /* --heading: #000; */
   --main-text: rgba(24, 24, 27);
   --wrapper: #fff;
+  --main: rgb(5, 31, 65);
+  --heading: rgb(238, 239, 239);
 }
 
 /* .logo a {
@@ -72,7 +87,7 @@
   width: 300px;
   height: 100%;
   background: var(--main);
-  border-left: 10px solid transparent;
+  /* border-left: 10px solid transparent; */
   overflow: hidden;
   transition: 0.5s;
   color: var(--main-text);
@@ -121,9 +136,18 @@
 
 .navigation ul li:nth-child(1) {
   margin-bottom: 40px;
+  margin-left: 0;
   pointer-events: none;
+  padding-left: 0;
+  /* background: red; */
 }
-
+.navigation ul li:nth-child(1) img {
+  width: 250px;
+  height: 100px;
+  margin-left: 0;
+  margin-right: 10px;
+  padding-left: 0;
+}
 .navigation ul li a {
   position: relative;
   display: block;
@@ -217,18 +241,10 @@
   display: grid;
   align-items: center;
   grid-template-columns: 1fr;
-  /* justify-content: space-between; */
-  /* align-items: center; */
+
   padding: 0 10px;
   background: var(--main);
   color: var(--heading);
-
-  /* background: linear-gradient(
-    to right,
-    var(--bg--black-900),
-    var(--main),
-    var(--bg--black-900)
-  ); */
 }
 .heading {
   position: relative;

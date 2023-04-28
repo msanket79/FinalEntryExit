@@ -213,7 +213,9 @@ textarea {
 }
 
 .form7784u5 input[type="radio"] {
-  display: none;
+  /* display: none; */
+  width: fit-content;
+  box-shadow: none;
 }
 .form7784u5 input[type="checkbox"] {
   width: fit-content;

@@ -19,8 +19,8 @@
   cursor: pointer;
 }
 
-.input-box:hover {
-}
+/* .input-box:hover {
+} */
 
 .options-box {
   background-color: var(--main);
