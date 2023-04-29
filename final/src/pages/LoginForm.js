@@ -14,10 +14,9 @@ export default function LoginForm() {
     const params = new FormData(event.target);
     const response = await axios.post(`${APIaddr}`, params);
 
-    console.log(response.data);
     if (response.data.success) {
       if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("token", response.data.token);
         axios.defaults.baseURL = `${APIaddr}`;
         axios.defaults.headers.common[
           "Authorization"
@@ -26,12 +25,10 @@ export default function LoginForm() {
       ReactDOM.unstable_batchedUpdates(() => {
         setID(response.data.id);
         setAuth(true);
-        console.log(response.data.staff[0]);
         if (response.data.student) {
           setRole("student");
         } else if (response.data.admin) {
           setRole(response.data.admin);
-          return;
         } else if (response.data.staff) {
           setAccess(response.data.staff);
           setCurRole(response.data.curr_role);
