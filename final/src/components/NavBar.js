@@ -28,8 +28,11 @@ export default function NavBar({ links }) {
       <li key={link.title}>
         <NavLink
           to={link.to}
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
+          className={
+            !link.disableActive
+              ? ""
+              : ({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
           }
           onClick={link.handleClick}
         >

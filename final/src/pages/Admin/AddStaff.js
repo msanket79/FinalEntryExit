@@ -44,15 +44,15 @@ export default function AddStaff({ handleStaffSubmit }) {
       },
       {
         label: "Is the staff a Warden?",
-        input: <input type="radio" value="warden" name="Permission_level" />,
+        input: <input type="checkbox" value="warden" name="warden" />,
       },
       {
         label: "Is the staff a Student Welfare Coordinator?",
-        input: <input type="radio" value="swc" name="Permission_level" />,
+        input: <input type="checkbox" value="swc" name="swc" />,
       },
       {
         label: "Is the staff a Faculty Advisor?",
-        input: <input type="radio" value="fa" name="Permission_level" />,
+        input: <input type="checkbox" value="fa" name="fa" />,
       },
       {
         label: "Gender",

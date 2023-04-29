@@ -29,14 +29,17 @@ export default function CheckOutpass() {
       rowData.swc_approval ? "Approved" : "",
       rowData.approved ? "Approved" : "",
       rowData.roll_no,
-      <button
-        onClick={async () => {
-          axios.post(`${APIaddr}outpass_status/`, { id: rowData.id });
-          setDummy(Math.random());
-        }}
-      >
-        Delete Request
-      </button>,
+      <div className="btn">
+        <button
+          onClick={async () => {
+            axios.post(`${APIaddr}outpass_status/`, { id: rowData.id });
+            setDummy(Math.random());
+          }}
+          className="deleteBtn"
+        >
+          Delete Request
+        </button>
+      </div>,
     ];
   });
 

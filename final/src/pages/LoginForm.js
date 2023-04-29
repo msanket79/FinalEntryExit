@@ -1,18 +1,18 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SharingContext from "../context/SharingContext";
 import ReactDOM from "react-dom";
 import { IoMailOutline, IoKeyOutline } from "react-icons/io5";
+import Modal from "../components/Modal";
 
 export default function LoginForm() {
   const { setAuth, setRole, APIaddr, setID } = useContext(SharingContext);
-
+  const [show, setShow] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     const response = await axios.post(`${APIaddr}`, params);
     if (response.data.success) {
-      console.log(response.data);
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         axios.defaults.baseURL = `${APIaddr}`;
@@ -35,11 +35,21 @@ export default function LoginForm() {
         }
       });
     } else {
-      window.alert(
-        "Something went wrong, usually it is due to wrong email or password, check again!"
-      );
+      setShow(true);
     }
   };
+
+  const onClose = () => {
+    setShow(false);
+  };
+
+  const footer = (
+    <div className="btn">
+      <button className="approveBtn" onClick={onClose}>
+        Retry
+      </button>
+    </div>
+  );
 
   return (
     <>
@@ -66,6 +76,11 @@ export default function LoginForm() {
               </button>
             </div>
           </form>
+          {show && (
+            <Modal onClose={onClose} footer={footer}>
+              Oops, something went wrong, check your login credentials.
+            </Modal>
+          )}
         </div>
       </div>
     </>

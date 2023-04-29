@@ -1,6 +1,5 @@
 import axios from "axios";
 import Form from "../../components/Form";
-import Cookies from "js-cookie";
 import { useContext } from "react";
 import SharingContext from "../../context/SharingContext";
 

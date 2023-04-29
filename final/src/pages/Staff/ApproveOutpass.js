@@ -16,13 +16,18 @@ export default function ApproveOutpass() {
   }, [dummy]);
   console.log(records);
   const entries = records.map((record) => {
+    let frm = new Date(record.From);
+    let to = new Date(record.To);
+    let duration = (to - frm) / 86400000;
     return [
       record.name,
       record.roll_no,
       record.phone_no,
       record.From,
       record.To,
+      duration.toString().concat(" days"),
       record.Reason,
+
       <div className="btn">
         <button
           onClick={async () => {
@@ -66,6 +71,7 @@ export default function ApproveOutpass() {
       "Phone Number",
       "From Date",
       "To Date",
+      "Duration of Outpass",
       "Reason",
       "Approve",
       "Reject",

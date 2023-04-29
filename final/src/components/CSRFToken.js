@@ -33,6 +33,6 @@ export default function CSRFToken() {
 
     fetchData();
   }, []);
-  // console.log("COOKIE: ".concat(getCookie("csrftoken")));
+  console.log("COOKIE: ".concat(getCookie("csrftoken")));
   return <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />;
 }

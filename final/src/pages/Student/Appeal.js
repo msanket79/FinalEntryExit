@@ -9,6 +9,8 @@ export default function Appeal() {
   const { APIaddr } = useContext(SharingContext);
   const [banData, setBanData] = useState([]);
   const [dummy, setDummy] = useState("");
+  const [show, setShow] = useState(false);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,15 +61,20 @@ export default function Appeal() {
         {
           label: "",
           input: (
-            <button
-              onClick={async () => {
-                const response = await axios.post(`${APIaddr}delete_ban/`);
-                window.alert(response.data.success);
-                setDummy("dfsa");
-              }}
-            >
-              DELETE
-            </button>
+            <div className="btn">
+              <button
+                onClick={async () => {
+                  const response = await axios.post(`${APIaddr}delete_ban/`);
+                  if (response.data.success) setContent(response.data.success);
+                  else if (response.data.error) setContent(response.data.error);
+                  setShow(true);
+                  setDummy("dfsa");
+                }}
+                className="deleteBtn"
+              >
+                DELETE
+              </button>
+            </div>
           ),
         },
       ],
@@ -76,6 +83,9 @@ export default function Appeal() {
   const handleSubmit = (formData) => {
     const postData = async () => {
       const response = await axios.post(`${APIaddr}appeal_ban/`, formData);
+      if (response.data.success) setContent(response.data.success);
+      else if (response.data.error) setContent(response.data.error);
+      setShow(true);
       setDummy("asd");
     };
     postData();

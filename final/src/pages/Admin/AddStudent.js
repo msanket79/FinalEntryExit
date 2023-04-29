@@ -51,9 +51,7 @@ export default function AddStudent() {
       },
       {
         label: "Upload profile picture",
-        input: (
-          <input type="file" required name="profile_pic" accept=".jpg, .jpeg" />
-        ),
+        input: <input type="file" name="profile_pic" accept=".jpg, .jpeg" />,
       },
       {
         label: "Email",

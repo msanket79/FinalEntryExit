@@ -14,7 +14,7 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
       if (response.data.error) fetchStudents();
       else setStudentList(response.data);
     };
-    if (staffLevel[0] === "fa") fetchStudents();
+    if (staffLevel[1] && !staffLevel[0]) fetchStudents();
   }, []);
 
   const wardenField = staffLevel[0] === "warden" && {
@@ -48,14 +48,15 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
     entries: entries,
   };
 
-  const faField = staffLevel[0] === "fa" && {
-    label: "",
-    input: (
-      <div>
-        <Table searchFor="Registration Number" data={faData} />
-      </div>
-    ),
-  };
+  const faField = staffLevel[1] &&
+    !staffLevel[0] && {
+      label: "",
+      input: (
+        <div>
+          <Table searchFor="Registration Number" data={faData} />
+        </div>
+      ),
+    };
 
   const data = {
     Header: "Fill further details",
@@ -74,7 +75,8 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
   };
 
   const handleSubmit = async (formData) => {
-    formData.append("id", staffLevel[1]);
+    formData.append("id", staffLevel[2]);
+
     const response = await axios.post(
       `${APIaddr}add_students_for_outpass/`,
       formData

@@ -1,7 +1,7 @@
 /*
 This file generates the Administrator Panel template site(Header, Navbar, Footer). 
 */
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import Header from "../../components/Header";
 import { useContext } from "react";
@@ -16,12 +16,16 @@ import {
   IoPaperPlaneOutline,
   IoEyeOutline,
   IoPersonAddOutline,
+  IoSwapHorizontalOutline,
 } from "react-icons/io5";
 
 export default function StaffTemplate() {
   const { show, setAuth } = useContext(SharingContext);
 
-  const navigate = useNavigate();
+  const switcher = (event) => {
+    event.preventDefault();
+    console.log("SWITCH");
+  };
 
   // Adjust the className for navbar collapse toggle
   const mainClass = classNames("main", {
@@ -69,9 +73,14 @@ export default function StaffTemplate() {
       title: "Logout",
       to: "../logout",
       icon: <IoLogOutOutline />,
-      onClick: () => {
-        setAuth(false);
-        navigate("../login");
+    },
+    {
+      title: "Switch to FA",
+      icon: <IoSwapHorizontalOutline />,
+      disableActive: true,
+      handleClick: (event) => {
+        event.preventDefault();
+        console.log("Switch");
       },
     },
   ];

@@ -161,10 +161,10 @@ textarea {
   width: 100%;
   border: none;
   outline: none;
-  color: var(--main);
+  color: var(--heading);
   border-radius: 5px;
   margin: 25px 0;
-  background-color: #4070f4;
+  background: var(--main);
   transition: all 0.3s linear;
   cursor: pointer;
 }

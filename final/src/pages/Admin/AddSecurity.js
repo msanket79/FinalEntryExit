@@ -40,7 +40,6 @@ export default function AddSecurity() {
             accept=".jpg, .jpeg"
             placeholder="Select Photo"
             name="profile_pic"
-            required
           />
         ),
       },
