@@ -4,13 +4,12 @@ import axios from "axios";
 import SharingContext from "../../context/SharingContext";
 
 export default function StaffProfile() {
-  const { APIaddr } = useContext(SharingContext);
+  const { APIaddr, curRole, access } = useContext(SharingContext);
   const [data, setData] = useState({});
-
+  console.log(access);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${APIaddr}staff_profile/`);
-      console.log(response.data);
       setData(response.data);
     };
     fetchData();
@@ -38,13 +37,9 @@ export default function StaffProfile() {
                 <IoMailOutline />
                 Access Level
               </h4>
-              <p>
-                {data.Permission_level === "swc"
-                  ? "Student Welfare Coordinator"
-                  : null}
-              </p>
-              <p>{data.Permission_level === "warden" ? "Warden" : null}</p>
-              <p>{data.Permission_level === "fa" ? "Faculty Advisor" : null}</p>
+              <p>{curRole === "swc" ? "Student Welfare Coordinator" : null}</p>
+              <p>{curRole === "warden" ? "Warden" : null}</p>
+              <p>{curRole === "fa" ? "Faculty Advisor" : null}</p>
             </div>
           </div>
         </div>

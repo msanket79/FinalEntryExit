@@ -8,7 +8,7 @@ import "./css/cssimport";
 const el = document.getElementById("root");
 
 const root = ReactDOM.createRoot(el);
-console.log(process.env);
+
 root.render(
   <BrowserRouter>
     <SharingProvider>

@@ -18,14 +18,11 @@ import {
   IoPersonAddOutline,
   IoSwapHorizontalOutline,
 } from "react-icons/io5";
+import axios from "axios";
 
 export default function StaffTemplate() {
-  const { show, setAuth } = useContext(SharingContext);
-
-  const switcher = (event) => {
-    event.preventDefault();
-    console.log("SWITCH");
-  };
+  const { show, APIaddr, access, setCurRole, curRole } =
+    useContext(SharingContext);
 
   // Adjust the className for navbar collapse toggle
   const mainClass = classNames("main", {
@@ -74,15 +71,47 @@ export default function StaffTemplate() {
       to: "../logout",
       icon: <IoLogOutOutline />,
     },
-    {
-      title: "Switch to FA",
-      icon: <IoSwapHorizontalOutline />,
-      disableActive: true,
-      handleClick: (event) => {
-        event.preventDefault();
-        console.log("Switch");
+    access.length > 1 &&
+      curRole !== "fa" && {
+        title: "Switch to FA",
+        icon: <IoSwapHorizontalOutline />,
+        disableActive: true,
+        handleClick: async (event) => {
+          event.preventDefault();
+          setCurRole("fa");
+          const formData = new FormData();
+          formData.append("access", access);
+          await axios.post(`${APIaddr}switch_staff_role/`, formData);
+        },
       },
-    },
+    access.length > 1 &&
+      access[1] === "warden" &&
+      curRole === "fa" && {
+        title: "Switch to Warden",
+        icon: <IoSwapHorizontalOutline />,
+        disableActive: true,
+        handleClick: async (event) => {
+          event.preventDefault();
+          setCurRole("warden");
+          const formData = new FormData();
+          formData.append("access", access);
+          await axios.post(`${APIaddr}switch_staff_role/`, formData);
+        },
+      },
+    access.length > 1 &&
+      access[1] === "swc" &&
+      curRole === "fa" && {
+        title: "Switch to SWC",
+        icon: <IoSwapHorizontalOutline />,
+        disableActive: true,
+        handleClick: async (event) => {
+          event.preventDefault();
+          setCurRole("swc");
+          const formData = new FormData();
+          formData.append("access", access);
+          await axios.post(`${APIaddr}switch_staff_role/`, formData);
+        },
+      },
   ];
 
   return (

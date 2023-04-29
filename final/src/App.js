@@ -15,8 +15,6 @@ export default function App() {
 
   useEffect(() => {
     setDummy(!dummy);
-    console.log(isAuth);
-    console.log(role);
     if (role === "admin" && isAuth === true) {
       navigate("/admin/home");
     } else if (role === "student" && isAuth === true) {

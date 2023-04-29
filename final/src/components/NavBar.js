@@ -24,6 +24,7 @@ export default function NavBar({ links }) {
   // Icon is the Icon rendered to the user
   // to is the path to navigate to
   const renderedLinks = links.map((link) => {
+    if (!link) return;
     return (
       <li key={link.title}>
         <NavLink

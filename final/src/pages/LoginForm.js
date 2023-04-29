@@ -6,12 +6,15 @@ import { IoMailOutline, IoKeyOutline } from "react-icons/io5";
 import Modal from "../components/Modal";
 
 export default function LoginForm() {
-  const { setAuth, setRole, APIaddr, setID } = useContext(SharingContext);
+  const { setAuth, setRole, APIaddr, setID, setAccess, setCurRole } =
+    useContext(SharingContext);
   const [show, setShow] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     const response = await axios.post(`${APIaddr}`, params);
+
+    console.log(response.data);
     if (response.data.success) {
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
@@ -23,12 +26,15 @@ export default function LoginForm() {
       ReactDOM.unstable_batchedUpdates(() => {
         setID(response.data.id);
         setAuth(true);
+        console.log(response.data.staff[0]);
         if (response.data.student) {
           setRole("student");
         } else if (response.data.admin) {
-          setRole("admin");
+          setRole(response.data.admin);
           return;
         } else if (response.data.staff) {
+          setAccess(response.data.staff);
+          setCurRole(response.data.curr_role);
           setRole("staff");
         } else if (response.data.security) {
           setRole("security");
@@ -60,11 +66,21 @@ export default function LoginForm() {
             <div className="input-group">
               <div className="input-field">
                 <IoMailOutline className="login-icon" />
-                <input type="email" placeholder="E-Mail" name="email" />
+                <input
+                  type="email"
+                  placeholder="E-Mail"
+                  name="email"
+                  required
+                />
               </div>
               <div className="input-field">
                 <IoKeyOutline className="login-icon" />
-                <input type="password" placeholder="Password" name="password" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  required
+                />
               </div>
               {/* <p>
                 Forgotten Password ? <a href="#"> Click Here!</a>

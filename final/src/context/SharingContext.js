@@ -7,7 +7,9 @@ function SharingProvider({ children }) {
   const [role, setRole] = useState("");
   const [isAuth, setAuth] = useState(false);
   const [ID, setID] = useState("");
-  const [APIaddr, setAPIaddr] = useState("http://10.0.12.123:8000/");
+  const [APIaddr, setAPIaddr] = useState("http://10.0.13.59:8000/");
+  const [access, setAccess] = useState([]);
+  const [curRole, setCurRole] = useState();
 
   return (
     <SharingContext.Provider
@@ -22,6 +24,10 @@ function SharingProvider({ children }) {
         setID,
         APIaddr,
         setAPIaddr,
+        access,
+        setAccess,
+        curRole,
+        setCurRole,
       }}
     >
       {children}
