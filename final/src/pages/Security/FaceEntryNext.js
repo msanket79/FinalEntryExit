@@ -1,11 +1,11 @@
 import axios from "axios";
 import Form from "../../components/Form";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SharingContext from "../../context/SharingContext";
 import { useNavigate } from "react-router-dom";
 import OutpassExit from "./OutpassExit";
 
-export default function FaceEntryNext({ record, setData }) {
+export default function FaceEntryNext({ record, setData, type }) {
   const { APIaddr } = useContext(SharingContext);
   const [rollNo, setRollNo] = useState("");
   const navigate = useNavigate();
@@ -21,8 +21,11 @@ export default function FaceEntryNext({ record, setData }) {
         input: <p>{record.roll_no}</p>,
       },
       {
-        label: "Image",
-        input: <img src={`${APIaddr}` + record.profile_pic} style={{height:"480px", width:"640px"}}/>,
+        label:"",
+        input: <div className="studentpic">
+          <img className = "pic1" src={`${APIaddr}` + record.profile_pic} style={{height:"480px", width:"640px"}}/>
+          <img className = "pic2" src={`${APIaddr}` + record.image} style={{height:"480px", width:"640px"}} alt="Failed to load image"/>
+        </div>
       },
       {
         label: "",
@@ -38,23 +41,21 @@ export default function FaceEntryNext({ record, setData }) {
                 formData
               );
               if (response.data.success) {
-                window.alert(response.data.success);
-                navigate("../manualEntry");
+                window.alert(response.data.success)
+                navigate("../profile")
               } else if (response.data.error) window.alert(response.data.error);
               if (response.data.outpass) setRollNo(record.roll_no);
             }}
           >
             <span class="btnText">Confirm Student</span>
-            <i class="uil uil navigator"></i>
           </button>
         ),
       },
       {
         label: "",
         input: (
-          <button class="nextBtn" onClick={() => setData({})}>
+          <button class="nextBtn" onClick={() => navigate("../profile")}>
             <span class="btnText">Cancel</span>
-            <i class="uil uil navigator"></i>
           </button>
         ),
       },

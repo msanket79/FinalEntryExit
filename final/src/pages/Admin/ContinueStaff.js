@@ -29,6 +29,7 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
         <br />
         <span>Add All Students</span>
         <input type="radio" name="students" value="all" />
+        <input type="hidden" name="staff_type" value="warden" />
       </div>
     ),
   };
@@ -54,6 +55,7 @@ export default function ContinueStaff({ staffLevel, setEntity }) {
       input: (
         <div>
           <Table searchFor="Registration Number" data={faData} />
+          <input type="hidden" name="staff_type" value="fa" />
         </div>
       ),
     };

@@ -105,8 +105,9 @@ export default function MakeEntry() {
         </div>
       )}
       {studentData.name && (
-        <FaceEntryNext record={studentData} setData={setData} />
+        <FaceEntryNext record={studentData} setData={setData} type="faceEntry"/>
       )}
+
     </div>
   );
 }

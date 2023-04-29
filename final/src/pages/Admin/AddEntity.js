@@ -38,6 +38,7 @@ export default function AddEntity() {
       const swcCreate = new FormData();
       swcCreate.append("id", response.data.id);
       swcCreate.append("students", "all");
+      swcCreate.append("staff_type", "swc");
       const resp = await axios.post(
         `${APIaddr}add_students_for_outpass/`,
         swcCreate

@@ -1,5 +1,6 @@
 export default function Form({ data, onSubmit }) {
   const renderedFields = data.fields.map((field) => {
+    if(!field) return;
     return (
       <div className="input-field76t33">
         <label>{field.label}</label>

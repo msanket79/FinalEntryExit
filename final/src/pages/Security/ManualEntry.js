@@ -3,10 +3,17 @@ import Form from "../../components/Form";
 import { useContext, useState } from "react";
 import SharingContext from "../../context/SharingContext";
 import OutpassExit from "./OutpassExit";
+import Modal from "../../components/Modal";
+import FaceEntryNext from "./FaceEntryNext";
+import {  useNavigate } from "react-router-dom";
 
 export default function ManualEntry() {
   const { APIaddr } = useContext(SharingContext);
-  const [rollNo, setRollNo] = useState("");
+  const [studentData, setStudentData] = useState("");
+  const [show, setShow] = useState(false)
+  const [content, setContent] = useState("")
+
+  const navigate = useNavigate()
 
   const data = {
     Header: "Add entry",
@@ -33,15 +40,35 @@ export default function ManualEntry() {
 
   const handleSubmit = async (formData) => {
     const response = await axios.post(`${APIaddr}direct_entry/`, formData);
-    if (response.data.success) window.alert(response.data.success);
-    else if (response.data.error) window.alert(response.data.error);
-    if (response.data.outpass) setRollNo(formData.get("roll_no"));
+    if (response.data.error) setContent(response.data.error);
+    else {
+      setStudentData(response.data)
+    }
   };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const footer = (
+    <div className="btn">
+      <button className="deleteBtn" onClick={handleClose}>
+        Close
+      </button>
+    </div>
+  );
 
   return (
     <>
-      {!rollNo && <Form data={data} onSubmit={handleSubmit} />}
-      {rollNo && <OutpassExit rollNo={rollNo} setRollNo={setRollNo} />}
+      {!studentData.name && <Form data={data} onSubmit={handleSubmit} />}
+      {studentData.name && (
+        <FaceEntryNext record={studentData} setData={setStudentData} type="manual"/>
+      )}
+      {show && (
+        <Modal onClose={handleClose} footer={footer}>
+          {content}
+        </Modal>
+      )}
     </>
   );
 }

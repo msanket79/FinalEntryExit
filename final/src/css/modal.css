@@ -4,10 +4,16 @@
   background-color: rgb(209 213 219);
 }
 
+/* sakshi yaha maine modal ka css change kia hai i am sanket */
 .modal-content-container {
   position: fixed;
-  inset: 10rem;
-  padding: 2.5rem;
+  top: 1rem; /* move the modal 3rem from the top */
+  left: 50%; /* center the modal horizontally */
+  transform: translateX(-50%); /* center the modal horizontally */
+  width: 40%; /* decrease the width of the modal to 80% */
+  max-height: 20vh; /* set the maximum height of the modal to 90% of the viewport height */
+  overflow-y: auto; /* add a scrollbar when the content overflows */
+  padding: 1rem;
   background-color: white;
   border-radius: 0.25rem;
 }
