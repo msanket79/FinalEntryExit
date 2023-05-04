@@ -15,12 +15,12 @@ export default function LoginForm() {
     const params = new FormData(event.target);
     let encoded = AES.encrypt(
       params.get("email"),
-      "x/A?D(G+KbPeShVm"
+      "3t6w9z$B&E)H@McQ"
     ).toString();
     params.set("email", encoded);
     encoded = AES.encrypt(
       params.get("password"),
-      "x/A?D(G+KbPeShVm"
+      "3t6w9z$B&E)H@McQ"
     ).toString();
     params.set("password", encoded);
     const response = await axios.post(`${APIaddr}`, params);
