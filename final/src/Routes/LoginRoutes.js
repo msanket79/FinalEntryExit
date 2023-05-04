@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import Error from "../pages/Error";
 import LoginForm from "../pages/LoginForm";
 import Logout from "../pages/Logout";
-import LoginTemplate from "../pages/LoginTemplate";
 
 export default function LoginRoutes() {
   return (
