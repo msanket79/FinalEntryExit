@@ -74,7 +74,10 @@ export default function AddStudent() {
   };
   const handleSubmit = async (formData) => {
     const postData = async () => {
-      const response = await axios.post(`${APIaddr}create_student/`, formData);
+      const response = await axios.post(
+        `${APIaddr}management/student/`,
+        formData
+      );
       if (response.data.success) {
         window.alert("Student Created");
         navigate("../home");

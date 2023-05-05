@@ -28,10 +28,10 @@ export default function ManageStudent() {
       <div className="btn">
         <button
           onClick={async () => {
-            const formData = new FormData();
-            formData.append("id", rowData.id);
-            // const response = await axios.post(`${APIaddr}`, formData);
-            // setDat(response.data);
+            const response = await axios.get(
+              `${APIaddr}management/student/${rowData.id}/`
+            );
+            setDat(response.data);
             setShow(true);
           }}
         >
@@ -77,8 +77,10 @@ export default function ManageStudent() {
         <button
           onClick={async () => {
             const formData = new FormData();
-            formData.append("id", rowData.id);
-            await axios.post(`${APIaddr}delete_student/`, formData);
+            await axios.delete(
+              `${APIaddr}management/student/${rowData.id}/`,
+              formData
+            );
             setDummy(Math.random());
           }}
           className="deleteBtn"
@@ -107,8 +109,16 @@ export default function ManageStudent() {
     Header: `Editing ${dat.name} details`,
     fields: [
       {
+        label: "",
+        input: <input type="hidden" value={dat.id} />,
+      },
+      {
         label: "Name",
         input: <input value={dat.name} required />,
+      },
+      {
+        label: "Email",
+        input: <input value={dat.email} required />,
       },
       {
         label: "Roll Number",
@@ -123,6 +133,14 @@ export default function ManageStudent() {
         input: <input value={dat.emergency_phone_no} required />,
       },
       {
+        label: "Password",
+        input: <input value={dat.password} type="password" required />,
+      },
+      {
+        label: "Upload profile picture",
+        input: <input type="file" name="profile_pic" accept=".jpg, .jpeg" />,
+      },
+      {
         label: "",
         input: (
           <div className="btn">
@@ -130,27 +148,32 @@ export default function ManageStudent() {
           </div>
         ),
       },
-      // {
-      //   label: "",
-      //   input: (
-      //     <div className="btn">
-      //       <button>Cancel</button>
-      //     </div>
-      //   ),
-      // },
     ],
   };
 
   const handleSubmit = async (formData) => {
-    const response = await axios.post(`${APIaddr}`, formData);
+    const response = await axios.put(
+      `${APIaddr}/management/student/${formData.get("id")}/`,
+      formData
+    );
     setShow(false);
   };
+
+  const closeModal = () => {
+    setShow(false);
+  };
+
+  const footer = (
+    <div className="btn">
+      <button onClick={closeModal}>Cancel</button>
+    </div>
+  );
 
   return (
     <>
       <SearchableTable searchFor={"Registration Number"} data={data} />
       {showModal && (
-        <Modal>
+        <Modal footer={footer} onClose={closeModal}>
           <Form data={editData} onSubmit={handleSubmit} />
         </Modal>
       )}
