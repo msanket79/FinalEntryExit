@@ -1,29 +1,27 @@
 import { useState } from "react";
 import DropdownStylized from "../../components/DropdownStylized";
-import ManageStudent from "./ManageStudent";
-import ManageSecurity from "./ManageSecurity";
-import ManageStaff from "./ManageStaff";
+import { useNavigate } from "react-router-dom";
 
 export default function AddEntity() {
   const [Entity, SetEntity] = useState("Select Entity");
+  const navigate = useNavigate();
   const options = [
     { key: 1, label: "Manage Staff" },
     { key: 2, label: "Manage Student" },
     { key: 3, label: "Manage Security" },
   ];
 
+  if (Entity === "Manage Staff") navigate("staff");
+  if (Entity === "Manage Student") navigate("student");
+  if (Entity === "Manage Security") navigate("security");
+
   return (
     <div>
-      {Entity === "Select Entity" && (
-        <DropdownStylized
-          current={Entity}
-          setCurrent={SetEntity}
-          options={options}
-        />
-      )}
-      {Entity === "Manage Staff" && <ManageStaff />}
-      {Entity === "Manage Student" && <ManageStudent />}
-      {Entity === "Manage Security" && <ManageSecurity />}
+      <DropdownStylized
+        current={Entity}
+        setCurrent={SetEntity}
+        options={options}
+      />
     </div>
   );
 }

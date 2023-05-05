@@ -13,6 +13,9 @@ import AddEntity from "../pages/Admin/AddEntity";
 import EntryExitTable from "../pages/Admin/EntryExitTable";
 import BansTable from "../pages/Admin/ManageBans";
 import ManageEntity from "../pages/Admin/ManageEntity";
+import ManageStaff from "../pages/Admin/ManageStaff";
+import ManageStudent from "../pages/Admin/ManageStudent";
+import ManageSecurity from "../pages/Admin/ManageSecurity";
 
 export default function AdminRoutes() {
   return (
@@ -22,7 +25,12 @@ export default function AdminRoutes() {
         <Route path="add" element={<AddEntity />} />
         <Route path="records" element={<EntryExitTable />} />
         <Route path="bans" element={<BansTable />} />
-        <Route path="manage" element={<ManageEntity />} />
+        <Route path="manage">
+          <Route path="" element={<ManageEntity />} />
+          <Route path="staff" element={<ManageStaff />} />
+          <Route path="student" element={<ManageStudent />} />
+          <Route path="security" element={<ManageSecurity />} />
+        </Route>
         <Route path="outpass" element={<OutpassHistory />} />
         <Route path="deleteHistory" element={<DeleteHistory />} />
         <Route path="deleteBatch" element={<DeleteBatch />} />
