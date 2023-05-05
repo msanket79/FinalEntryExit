@@ -4,7 +4,7 @@ import SharingContext from "../context/SharingContext";
 import ReactDOM from "react-dom";
 import { IoMailOutline, IoKeyOutline } from "react-icons/io5";
 import Modal from "../components/Modal";
-import { AES, enc } from "crypto-js";
+// import { AES, enc } from "crypto-js";
 
 export default function LoginForm() {
   const { setAuth, setRole, APIaddr, setID, setAccess, setCurRole } =
@@ -13,16 +13,16 @@ export default function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    let encoded = AES.encrypt(
-      params.get("email"),
-      "3t6w9z$B&E)H@McQ"
-    ).toString();
-    params.set("email", encoded);
-    encoded = AES.encrypt(
-      params.get("password"),
-      "3t6w9z$B&E)H@McQ"
-    ).toString();
-    params.set("password", encoded);
+    // let encoded = AES.encrypt(
+    //   params.get("email"),
+    //   "3t6w9z$B&E)H@McQ"
+    // ).toString();
+    // params.set("email", encoded);
+    // encoded = AES.encrypt(
+    //   params.get("password"),
+    //   "3t6w9z$B&E)H@McQ"
+    // ).toString();
+    // params.set("password", encoded);
     const response = await axios.post(`${APIaddr}`, params);
 
     if (response.data.success) {

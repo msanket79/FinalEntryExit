@@ -30,9 +30,9 @@ export default function ManageStudent() {
           onClick={async () => {
             const formData = new FormData();
             formData.append("id", rowData.id);
-            const response = await axios.post(`${APIaddr}`, formData);
-            setDat(response.data);
-            showModal(true);
+            // const response = await axios.post(`${APIaddr}`, formData);
+            // setDat(response.data);
+            setShow(true);
           }}
         >
           Edit

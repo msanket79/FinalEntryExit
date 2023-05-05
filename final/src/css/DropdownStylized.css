@@ -27,7 +27,7 @@
   color: var(--heading);
   padding: 10px;
   display: inline;
-  width: fit-content;
+  width: 21%;
   border-radius: 10px;
   cursor: pointer;
 }
