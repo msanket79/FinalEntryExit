@@ -28,7 +28,6 @@ export default function CheckOutpass() {
       rowData.warden_approval ? "Approved" : "",
       rowData.swc_approval ? "Approved" : "",
       rowData.approved ? "Approved" : "",
-      rowData.roll_no,
       <div className="btn">
         <button
           onClick={async () => {
@@ -54,7 +53,6 @@ export default function CheckOutpass() {
       "Warden Approval",
       "SWC Approval",
       "Approved",
-      "Registration number",
       "Delete",
     ],
     entries: entries,

@@ -6,7 +6,7 @@ import SharingContext from "../../context/SharingContext";
 export default function StaffProfile() {
   const { APIaddr, curRole, access } = useContext(SharingContext);
   const [data, setData] = useState({});
-  console.log(access);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${APIaddr}staff_profile/`);

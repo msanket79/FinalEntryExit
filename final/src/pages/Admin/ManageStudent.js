@@ -27,11 +27,8 @@ export default function ManageStudent() {
       rowData.emergency_phone_no,
       <div className="btn">
         <button
-          onClick={async () => {
-            const response = await axios.get(
-              `${APIaddr}management/student/${rowData.id}/`
-            );
-            setDat(response.data);
+          onClick={() => {
+            setDat(rowData);
             setShow(true);
           }}
         >
@@ -110,31 +107,45 @@ export default function ManageStudent() {
     fields: [
       {
         label: "",
-        input: <input type="hidden" value={dat.id} />,
+        input: <input type="hidden" name="id" value={dat.id} />,
+      },
+      {
+        label: "",
+        input: <input type="hidden" value={dat.gender} name="gender" />,
       },
       {
         label: "Name",
-        input: <input value={dat.name} required />,
+        input: <input defaultValue={dat.name} name="name" required />,
       },
       {
         label: "Email",
-        input: <input value={dat.email} required />,
+        input: <input defaultValue={dat.email} name="email" required />,
       },
       {
         label: "Roll Number",
-        input: <input value={dat.roll_no} required />,
+        input: <input defaultValue={dat.roll_no} name="roll_no" required />,
       },
       {
         label: "Contact Number",
-        input: <input value={dat.phone_no} required />,
+        input: <input defaultValue={dat.phone_no} name="phone_no" required />,
       },
       {
         label: "Emergency Contact Number",
-        input: <input value={dat.emergency_phone_no} required />,
+        input: (
+          <input
+            defaultValue={dat.emergency_phone_no}
+            name="emergency_phone_no"
+            required
+          />
+        ),
+      },
+      {
+        label: "Father's Name",
+        input: <input defaultValue={dat.father} name="father" required />,
       },
       {
         label: "Password",
-        input: <input value={dat.password} type="password" required />,
+        input: <input type="password" name="password" />,
       },
       {
         label: "Upload profile picture",
@@ -152,11 +163,15 @@ export default function ManageStudent() {
   };
 
   const handleSubmit = async (formData) => {
+    const id = formData.get("id");
+    if (formData.get("password") === "") formData.delete("password");
+    formData.delete("id");
     const response = await axios.put(
-      `${APIaddr}/management/student/${formData.get("id")}/`,
+      `${APIaddr}management/student/${id}/`,
       formData
     );
     setShow(false);
+    setDummy(Math.random());
   };
 
   const closeModal = () => {

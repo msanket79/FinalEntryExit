@@ -23,11 +23,19 @@ export default function LoginForm() {
     //   "3t6w9z$B&E)H@McQ"
     // ).toString();
     // params.set("password", encoded);
-    const response = await axios.post(`${APIaddr}`, params);
+    let response = {};
+    if (!localStorage.getItem("token"))
+      response = await axios.post(`${APIaddr}`, params);
+    else
+      response.data = {
+        success: true,
+        id: localStorage.getItem("id"),
+        token: localStorage.getItem("token"),
+      };
 
     if (response.data.success) {
       if (response.data.token) {
-        // localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         axios.defaults.baseURL = `${APIaddr}`;
         axios.defaults.headers.common[
           "Authorization"

@@ -6,13 +6,15 @@ export default function () {
   const { setAuth, setCurRole, APIaddr } = useContext(SharingContext);
   useEffect(() => {
     const deleteToken = async () => {
-      axios.post(`${APIaddr}logout/`)
-  }
-  deleteToken()
-  }, [])
-  
+      axios.post(`${APIaddr}logout/`);
+    };
+    deleteToken();
+  }, []);
+
   setAuth(false);
   setCurRole("");
+  localStorage.removeItem("token");
+  // localStorage.removeItem();
   window.location.replace("../login");
   return <div></div>;
 }
