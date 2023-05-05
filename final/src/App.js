@@ -6,6 +6,8 @@ import LoginRoutes from "./Routes/LoginRoutes";
 import { useContext, useEffect, useState } from "react";
 import SharingContext from "./context/SharingContext";
 import { useNavigate } from "react-router-dom";
+import Error from "./pages/Error";
+import LoginForm from "./pages/LoginForm";
 
 export default function App() {
   const { role, isAuth } = useContext(SharingContext);
@@ -28,15 +30,17 @@ export default function App() {
 
   return (
     <>
-      {true && <LoginRoutes />}
-      {/* {isAuth && role === "student" && <StudentRoutes />}
+      <LoginRoutes />
+      {isAuth && role === "student" && <StudentRoutes />}
       {isAuth && role === "admin" && <AdminRoutes />}
       {isAuth && role === "staff" && <StaffRoutes />}
-      {isAuth && role === "security" && <SecurityRoutes />} */}
-      <StudentRoutes />
+      {isAuth && role === "security" && <SecurityRoutes />}
+      {!isAuth && <LoginForm />}
+      {/* {!isAuth && <Error />} */}
+      {/* <StudentRoutes />
       <AdminRoutes />
       <StaffRoutes />
-      <SecurityRoutes />
+      <SecurityRoutes /> */}
     </>
   );
 }

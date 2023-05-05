@@ -15,7 +15,7 @@ import AddStudent from "../pages/Staff/AddStudent";
 export default function StaffRoutes() {
   return (
     <Routes>
-      <Route path="/staff" element={<StaffTemplate />} exact>
+      <Route path="/staff" element={<StaffTemplate />}>
         <Route path="home" element={<StaffProfile />} />
         <Route path="approve" element={<ApproveOutpass />} />
         <Route path="viewApprovedOutpasses" element={<ApprovedOutpasses />} />
