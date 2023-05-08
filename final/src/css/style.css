@@ -560,3 +560,16 @@
 .navigation .active {
   color: red;
 }
+
+.qrcode {
+  display: flex;
+  justify-content: center;
+  background: white;
+  width: fit-content;
+  padding: 5px;
+}
+
+.qrdownload-center {
+  align-self: center;
+  margin: 5px;
+}

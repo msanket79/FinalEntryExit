@@ -31,16 +31,16 @@ export default function App() {
   return (
     <>
       <LoginRoutes />
-      {isAuth && role === "student" && <StudentRoutes />}
+      {/* {isAuth && role === "student" && <StudentRoutes />}
       {isAuth && role === "admin" && <AdminRoutes />}
       {isAuth && role === "staff" && <StaffRoutes />}
       {isAuth && role === "security" && <SecurityRoutes />}
-      {!isAuth && <LoginForm />}
+      {!isAuth && <LoginForm />} */}
       {/* {!isAuth && <Error />} */}
-      {/* <StudentRoutes />
+      <StudentRoutes />
       <AdminRoutes />
       <StaffRoutes />
-      <SecurityRoutes /> */}
+      <SecurityRoutes />
     </>
   );
 }

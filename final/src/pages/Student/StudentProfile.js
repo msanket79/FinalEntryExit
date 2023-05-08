@@ -3,10 +3,12 @@ import {
   IoCallOutline,
   IoMaleFemaleOutline,
   IoWaterOutline,
+  IoQrCodeOutline,
 } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import SharingContext from "../../context/SharingContext";
+import QRCode from "qrcode.react";
 
 export default function StudentProfile() {
   const { APIaddr } = useContext(SharingContext);
@@ -15,11 +17,21 @@ export default function StudentProfile() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${APIaddr}student_profile/`);
-      console.log(response.data);
       setData(response.data);
     };
     fetchData();
   }, []);
+
+  const downloadQR = () => {
+    const canvas = document.querySelector("canvas");
+    const url = canvas.toDataURL();
+    const link = document.createElement("a");
+    link.download = "id.png";
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="wrapper312">
@@ -72,6 +84,18 @@ export default function StudentProfile() {
                 Emergency Contact Number
               </h4>
               <p>{data.emergency_phone_no}</p>
+            </div>
+            <div className="data12534">
+              <h4>
+                <IoQrCodeOutline />
+                Entry pass
+              </h4>
+              <div className="qrcode">
+                <QRCode value={data.roll_no} />
+              </div>
+              <div className="btn qrdownload-center">
+                <button onClick={downloadQR}>Download QR Code</button>
+              </div>
             </div>
           </div>
         </div>
