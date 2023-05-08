@@ -25,7 +25,7 @@ export default function AddEntity() {
       window.alert("A person cannot be a warden and a swc.");
       return;
     }
-    const response = await axios.post(`${APIaddr}create_staff/`, formData);
+    const response = await axios.post(`${APIaddr}management/staff/`, formData);
     if (response.data.error) window.alert(response.data.error);
     if (formData.get("swc") === null) {
       setStaffLevel([

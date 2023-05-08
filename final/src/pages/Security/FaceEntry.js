@@ -8,7 +8,10 @@ export default function MakeEntry() {
   const vid = useRef(null);
   const canvasRef = useRef(null);
   const [studentData, setData] = useState({});
-  const [take, setTake] = useState(true);
+  // const [take, setTake] = useState(true);
+  const [rollNo, setRoll] = useState("");
+  const [content, setContent] = useState("Show QR Code");
+
   let temp = null;
   let stream;
   useEffect(() => {
@@ -39,35 +42,48 @@ export default function MakeEntry() {
   const makePackage = () => {
     let count = 0;
     const formData = new FormData();
-    const iid = setInterval(() => {
-      capture();
-      formData.append("img", temp);
-      count++;
-      if (count === 5) {
-        shipPackage(formData);
-        clearInterval(iid);
-      }
-    }, 100);
+    const iid = setInterval(
+      () => {
+        capture();
+        formData.append("img", temp);
+        count++;
+        if (count === 1) {
+          shipPackage(formData);
+          clearInterval(iid);
+        }
+      },
+      rollNo ? 100 : 1000
+    );
   };
 
   const shipPackage = async (formData) => {
     formData.append("entry_type", "face");
+    if (rollNo) formData.append("roll_no", rollNo);
     const response = await axios.post(`${APIaddr}direct_entry/`, formData);
     if (
-      (response.data.error &&
-        take &&
+      ((response.data.error || response.data.getface) &&
+        // take &&
         window.location.pathname === "/security/faceEntry") ||
       response.status === 500
-    )
-      makePackage();
-    else {
-      if (stream) {
-        stream.getTracks().forEach((track) => {
-          track.stop();
-        });
+    ) {
+      if (response.data.getface) {
+        setRoll(response.data.roll_no);
+        setContent("Show your Face");
       }
-      setData(response.data);
-      setTake(false);
+      makePackage();
+    } else if (response.data.success) {
+      setRoll("");
+      setContent(rollNo + " recorded");
+      // if (stream) {
+      //   stream.getTracks().forEach((track) => {
+      //     track.stop();
+      //   });
+      // }
+      // setData(response.data);
+      // setTake(false);
+    } else if (response.data.no_match) {
+      setRoll("");
+      setContent("Face not matched with QR Code");
     }
   };
 
@@ -88,6 +104,7 @@ export default function MakeEntry() {
 
   return (
     <div>
+      <h1 style={{ textAlign: "center" }}>{content}</h1>
       {!studentData.name && (
         <div className="secCenter">
           <div>
@@ -105,9 +122,12 @@ export default function MakeEntry() {
         </div>
       )}
       {studentData.name && (
-        <FaceEntryNext record={studentData} setData={setData} type="faceEntry"/>
+        <FaceEntryNext
+          record={studentData}
+          setData={setData}
+          type="faceEntry"
+        />
       )}
-
     </div>
   );
 }

@@ -71,7 +71,10 @@ export default function AddSecurity() {
   };
 
   const handleSubmit = async (formData) => {
-    const response = await axios.post(`${APIaddr}create_security/`, formData);
+    const response = await axios.post(
+      `${APIaddr}management/security/`,
+      formData
+    );
     if (response.data.user_id) console.log("Successfully created user");
     else window.alert(response.data.error);
   };
