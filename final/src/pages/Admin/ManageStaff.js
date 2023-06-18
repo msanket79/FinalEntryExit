@@ -34,8 +34,8 @@ export default function ManageStaff() {
                 }
             } >
             Edit <
-            /button> <
-            /div>, <
+            /button> < /
+            div > , <
             div className = "btn" >
             <
             button
@@ -51,8 +51,8 @@ export default function ManageStaff() {
             }
             className = "deleteBtn" >
             Delete <
-            /button> <
-            /div>,
+            /button> < /
+            div > ,
         ];
     });
 
@@ -111,8 +111,8 @@ export default function ManageStaff() {
                 input: ( <
                     div className = "btn" >
                     <
-                    button > Submit < /button> <
-                    /div>
+                    button > Submit < /button> < /
+                    div >
                 ),
             },
         ],
@@ -137,26 +137,26 @@ export default function ManageStaff() {
     const footer = ( <
         div className = "btn" >
         <
-        button onClick = { closeModal } > Cancel < /button> <
-        /div>
+        button onClick = { closeModal } > Cancel < /button> < /
+        div >
     );
 
     return ( <
-        >
-        <
-        SearchableTable searchFor = { "Name" }
-        data = { data }
-        /> {
+            >
+            <
+            SearchableTable searchFor = { "Name" }
+            data = { data }
+            /> {
             showModal && ( <
                 Modal footer = { footer }
                 onClose = { closeModal } >
                 <
                 Form data = { editData }
                 onSubmit = { handleSubmit }
-                /> <
-                /Modal>
+                /> < /
+                Modal >
             )
         } <
         />
-    );
+);
 }

@@ -34,77 +34,86 @@ export default function StudentProfile() {
     };
 
     return ( <
-        div className = "wrapper312" >
-        <
-        div className = "left21" >
-        <
-        img src = { `${APIaddr}` + data.profile_pic }
-        alt = "profile pic" / >
-        <
-        h4 > { data.name } < /h4> <
-        h5 > { data.roll_no } < /h5> <
-        /div> <
-        div className = "right312341" >
-        <
-        div className = "info1234323" >
-        <
-        h3 > Profile < /h3> <
-        div className = "info_data14564" >
-        <
-        div className = "data12534" >
-        <
-        h4 >
-        <
-        IoMailOutline / >
-        Email <
-        /h4> <
-        p > { data.email } < /p> <
-        /div> <
-        div className = "data12534" >
-        <
-        h4 >
-        <
-        IoMaleFemaleOutline / >
-        Gender <
-        /h4> <
-        p > { data.gender } < /p> <
-        /div> <
-        div className = "data12534" >
-        <
-        h4 >
-        <
-        IoWaterOutline / >
-        Father 's Name <
-        /h4> <
-        p > { data.father } < /p> <
-        /div> <
-        /div> <
-        /div>
+            div className = "wrapper312" >
+            <
+            div className = "left21" >
+            <
+            // img src = { `${APIaddr}` + data.profile_pic }
+            img src = { "https://www.clipartmax.com/png/middle/180-1809318_picture-300-x-300-pixel.png" }
+            alt = "profile pic" / >
+            <
+            h4 > { data.name } < /h4> <
+            h5 > { data.roll_no } < /h5> < /
+            div > <
+            div className = "right312341" >
+            <
+            div className = "info1234323" >
+            <
+            h3 > Profile < /h3> <
+            div className = "info_data14564" >
+            <
+            div className = "data12534" >
+            <
+            div className = "fields7414" > <
+            h4 >
+            <
+            IoMailOutline / >
+            Email: <
+            /h4> <
+            // p > { data.email } < /p> < /
+            p className = "ans111" > 21 bcs049 @iiitdwd.ac.in < /p> < /
+            div > <
+            div className = "data12534" >
+            <
+            h4 >
+            <
+            IoMaleFemaleOutline / >
+            Gender: <
+            /h4> <
+            p className = "ans112" > Male < /p> < /
+            div > <
+            div className = "data12534" >
+            <
+            h4 >
+            <
+            IoWaterOutline / >
+            Father 's Name:< /
+            h4 > <
+            p className = "ans113" > sthrsyb dthdb < /p> < /
+            div > < /
+            div > <
+            /div> < /
+            div >
 
-        <
-        div className = "projects1235342" >
-        <
-        h3 > Contact Details < /h3> <
-        div className = "projects_data7684" >
-        <
-        div className = "data12534" >
-        <
-        h4 >
-        <
-        IoCallOutline / >
-        Contact Number <
-        /h4> <
-        p > { data.phone_no } < /p> <
-        /div> <
-        div className = "data12534" >
-        <
-        h4 >
-        <
-        IoCallOutline / >
-        Emergency Contact Number <
-        /h4> <
-        p > { data.emergency_phone_no } < /p> <
-        /div> {
+            <
+            div className = "projects1235342" >
+
+            <
+            h3 > Contact Details: < /h3> <
+            div className = "projects_data7684" >
+            <
+            div className = "data12534" >
+            <
+            div className = "fields7414" >
+            <
+            h4 >
+            <
+            IoCallOutline / >
+            Contact No.: <
+            /h4> <
+            p className = "ans114" > 8765432765 < /p> < /
+            div > <
+            div className = "data12534" >
+            <
+            h4 >
+            <
+            IoCallOutline / >
+            Emergency Contact No.: <
+            /h4> <
+            p className = "ans115" > 9876543242 < /p> < /
+            div >
+            <
+            /div>{
             /* <div className="data12534">
                           <h4>
                             <IoQrCodeOutline />
@@ -118,9 +127,9 @@ export default function StudentProfile() {
                           </div>
                         </div> */
         } <
-        /div> <
-        /div> <
-        /div> <
-        /div>
-    );
+        /div> < /
+    div > <
+        /div> < /
+    div >
+);
 }

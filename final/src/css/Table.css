@@ -30,6 +30,7 @@
 
 .details76234 .recentOrders134ss53 table {
     border-radius: 5px;
+    margin-top: 20px;
 }
 
 .details76234 table {
@@ -67,7 +68,7 @@
 }
 
 .srch {
-    width: fit-content !important;
+    max-width: 30vh;
 }
 
 .edit-btn {
